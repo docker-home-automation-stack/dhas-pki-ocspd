@@ -85,7 +85,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && apt-get autoremove -qqy && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     \
-    && /harden.sh \
     && /entry.sh init
 
 WORKDIR /usr/local/ocspd
