@@ -56,23 +56,19 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
       jq \
       openssl \
       \
-      libcrypto++-dev \
   		libicu-dev \
   		libldap-dev \
   		libssl-dev \
   		libxml2-dev \
     \
   	&& cd /usr/local/src/libpki/ && \
-  	  ./configure && \
+  	  ./configure --libdir=/usr/lib/$(gcc -dumpmachine) && \
   	  make && \
   	  make install && \
-      ls -la /usr/ && \
-  	  ln -s /usr/lib64/libpki.so.88 /usr/lib/libpki.so.88 && \
-  	  ln -s /usr/lib64/libpki.so.90 /usr/lib/libpki.so.90 && \
   	  cd / && \
   	  rm -rf cd /usr/local/src/libpki/ \
   	&& cd /usr/local/src/openca-ocsp/ && \
-  	  ./configure --prefix=/usr/local/ocspd && \
+  	  ./configure --libdir=/usr/lib/$(gcc -dumpmachine) --prefix=/usr/local/ocspd && \
       make && \
       make install && \
       cd / && \
