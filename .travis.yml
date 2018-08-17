@@ -11,6 +11,7 @@ include: &toolchain_amd64
       packages:
         - curl
         - docker-ce
+        - jq
         # - gcc-4.9
         # - g++-4.9
         # - gcc-4.9-multilib
@@ -47,6 +48,7 @@ include: &toolchain_linux_cross
       packages:
         - curl
         - docker-ce
+        - jq
 
 # arm32v6 toolchain
 include: &toolchain_linux_arm32v6

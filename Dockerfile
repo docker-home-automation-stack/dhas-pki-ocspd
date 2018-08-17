@@ -50,7 +50,6 @@ RUN apk add --no-cache \
     && /entry.sh init
 
 WORKDIR /usr/local/ocspd
-VOLUME /pki
 VOLUME /ocspd
 
 EXPOSE 2560
