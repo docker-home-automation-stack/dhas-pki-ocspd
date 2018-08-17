@@ -30,7 +30,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-COPY ./src/harden.sh ./src/entry.sh /
+COPY ./src/entry.sh /
 COPY ./src/libpki/ /usr/local/src/libpki/
 COPY ./src/openca-ocspd/ /usr/local/src/openca-ocspd/
 COPY ./src/config/ /ocspd.tmpl/
