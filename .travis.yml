@@ -109,7 +109,7 @@ before_install:
     fi
   # download additional sources
   - git clone https://github.com/openca/libpki.git src/libpki/;
-  - git clone https://github.com/openca/openca-ocspd.git src/openca-ocsp/;
+  - git clone https://github.com/openca/openca-ocspd.git src/openca-ocspd/;
 
 install:
   - travis_wait 120 sleep infinity & ./scripts/build.sh;
@@ -120,7 +120,7 @@ script:
 cache:
   directories:
     - $TRAVIS_BUILD_DIR/src/libpki/
-    - $TRAVIS_BUILD_DIR/src/openca-ocsp/
+    - $TRAVIS_BUILD_DIR/src/openca-ocspd/
   
 after_success:
   - ./scripts/push-docker.sh;
