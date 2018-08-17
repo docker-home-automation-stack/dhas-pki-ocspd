@@ -116,11 +116,6 @@ install:
 
 script:
   #- ./scripts/test-integration.sh;
-
-cache:
-  directories:
-    - $TRAVIS_BUILD_DIR/src/libpki/
-    - $TRAVIS_BUILD_DIR/src/openca-ocspd/
   
 after_success:
   - ./scripts/push-docker.sh;

@@ -5,9 +5,12 @@ set -e
 cd "$(readlink -f "$(dirname "${BASH_SOURCE}")")"/..
 
 BUILD_DATE=$( date --iso-8601=seconds --utc )
-BASE="homeautomationstack/dhas-pki-ocspd-${ARCH}_linux"
+BASE="homeautomationstack/dhas-pki-ocspd-${LABEL}"
+BASE_IMAGE="debian"
+BASE_IMAGE_TAG="stretch-slim"
 
 if [[ -n "${ARCH}" && "${ARCH}" != "amd64" ]]; then
+  BASE_IMAGE="${ARCH}/${BASE_IMAGE}"
   if [ "${ARCH}" != "i386" ]; then
     echo "Starting QEMU environment for multi-arch build ..."
     docker run --rm --privileged --name qemu multiarch/qemu-user-static:register --reset
@@ -57,6 +60,8 @@ fi
 docker build \
   $( [ -n "${CACHE_TAG}" ] && echo -n "--cache-from "${BASE}:${CACHE_TAG}"" ) \
   --tag "${BASE}:${VARIANT}" \
+  --build-arg BASE_IMAGE=${BASE_IMAGE} \
+  --build-arg BASE_IMAGE_TAG=${BASE_IMAGE_TAG} \
   --build-arg ARCH=${ARCH} \
   --build-arg PLATFORM="linux" \
   --build-arg BUILD_DATE=${BUILD_DATE} \
