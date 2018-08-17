@@ -51,8 +51,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata \
     \
     && DEBIAN_FRONTEND=noninteractive apt-get install -qqy --no-install-recommends \
+      autoconf \
+      automake \
       build-essential \
       dumb-init \
+      file \
       jq \
       openssl \
       \
@@ -62,13 +65,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   		libxml2-dev \
     \
   	&& cd /usr/local/src/libpki/ && \
-  	  ./configure --libdir=/usr/lib/$(gcc -dumpmachine) && \
+  	  ./configure --includedir=/usr/lib/$(gcc -dumpmachine) --libdir=/usr/lib/$(gcc -dumpmachine) && \
   	  make && \
   	  make install && \
   	  cd / && \
   	  rm -rf cd /usr/local/src/libpki/ \
   	&& cd /usr/local/src/openca-ocsp/ && \
-  	  ./configure --libdir=/usr/lib/$(gcc -dumpmachine) --prefix=/usr/local/ocspd && \
+  	  ./configure --includedir=/usr/lib/$(gcc -dumpmachine) --libdir=/usr/lib/$(gcc -dumpmachine) --prefix=/usr/local/ocspd && \
       make && \
       make install && \
       cd / && \
