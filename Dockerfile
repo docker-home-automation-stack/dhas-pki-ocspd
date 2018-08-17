@@ -65,13 +65,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   		libxml2-dev \
     \
   	&& cd /usr/local/src/libpki/ && \
-  	  ./configure --includedir=/usr/lib/$(gcc -dumpmachine) --libdir=/usr/lib/$(gcc -dumpmachine) && \
+  	  LDFLAGS=-L/usr/lib/$(gcc -dumpmachine) CPPFLAGS=-I/usr/lib/$(gcc -dumpmachine) ./configure && \
   	  make && \
   	  make install && \
   	  cd / && \
   	  rm -rf cd /usr/local/src/libpki/ \
   	&& cd /usr/local/src/openca-ocsp/ && \
-  	  ./configure --includedir=/usr/lib/$(gcc -dumpmachine) --libdir=/usr/lib/$(gcc -dumpmachine) --prefix=/usr/local/ocspd && \
+  	  LDFLAGS=-L/usr/lib/$(gcc -dumpmachine) CPPFLAGS=-I/usr/lib/$(gcc -dumpmachine) ./configure --includedir=/usr/lib/$(gcc -dumpmachine) --libdir=/usr/lib/$(gcc -dumpmachine) --prefix=/usr/local/ocspd && \
       make && \
       make install && \
       cd / && \
