@@ -73,15 +73,17 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
       make && \
       make install && \
       cd / && \
-      rm -rf /usr/local/ocspd/etc/ocspd/pki/token.d /usr/local/ocspd/etc/ocspd/ca.d /usr/local/ocspd/etc/ocspd/ocspd.xml && \
+      rm -rf \
+        /usr/local/ocspd/etc/ocspd/pki/token.d \
+        /usr/local/ocspd/etc/ocspd/ca.d \
+        /usr/local/ocspd/etc/ocspd/ocspd.xml \
+        /usr/local/src/openca-ocsp/ && \
       ln -s /ocspd/token.d/ /usr/local/ocspd/etc/ocspd/pki/token.d && \
       ln -s /ocspd/ca.d/ /usr/local/ocspd/etc/ocspd/ca.d && \
-      ln -s /ocspd/ocspd.xml /usr/local/ocspd/etc/ocspd/pki/ocspd.xml && \
-      rm -rf /usr/local/src/openca-ocsp/ \
+      ln -s /ocspd/ocspd.xml /usr/local/ocspd/etc/ocspd/pki/ocspd.xml \
     \
     && apt-get purge -qqy \
         build-essential \
-        cpanminus \
     && apt-get autoremove -qqy && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     \
