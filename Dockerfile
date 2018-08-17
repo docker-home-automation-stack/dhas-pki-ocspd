@@ -27,7 +27,7 @@ RUN apk add --no-cache \
   	  ./configure && \
   	  make && \
   	  make install && \
-      ls -la /usr/ &&
+      ls -la /usr/ && \
   	  ln -s /usr/lib64/libpki.so.88 /usr/lib/libpki.so.88 && \
   	  ln -s /usr/lib64/libpki.so.90 /usr/lib/libpki.so.90 && \
   	  cd / && \
