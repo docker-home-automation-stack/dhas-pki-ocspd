@@ -1,5 +1,5 @@
 ARG BASE_IMAGE="debian"
-ARG BASE_IMAGE_TAG="stretch"
+ARG BASE_IMAGE_TAG="stretch-slim"
 FROM ${BASE_IMAGE}:${BASE_IMAGE_TAG}
 
 # Arguments to instantiate as variables
@@ -57,6 +57,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   		libicu-dev \
   		libldap-dev \
   		libxml2-dev \
+      libcrypto++-dev \
+      libssl1.1 \
   		libssl-dev \
     \
   	&& cd /usr/local/src/libpki/ && \
