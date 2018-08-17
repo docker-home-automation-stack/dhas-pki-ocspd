@@ -5,7 +5,7 @@ set -e
 cd "$(readlink -f "$(dirname "${BASH_SOURCE}")")"/..
 
 BUILD_DATE=$( date --iso-8601=seconds --utc )
-BASE="homeautomationstack/dhas-pki-${ARCH}_linux"
+BASE="homeautomationstack/dhas-pki-ocspd-${ARCH}_linux"
 
 if [[ -n "${ARCH}" && "${ARCH}" != "amd64" ]]; then
   if [ "${ARCH}" != "i386" ]; then
