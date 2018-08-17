@@ -7,7 +7,7 @@ cd "$(readlink -f "$(dirname "${BASH_SOURCE}")")"/..
 BUILD_DATE=$( date --iso-8601=seconds --utc )
 BASE="homeautomationstack/dhas-pki-ocspd-${LABEL}"
 BASE_IMAGE="debian"
-BASE_IMAGE_TAG="stretch-slim"
+BASE_IMAGE_TAG="stretch"
 
 if [[ -n "${ARCH}" && "${ARCH}" != "amd64" ]]; then
   BASE_IMAGE="${ARCH}/${BASE_IMAGE}"
