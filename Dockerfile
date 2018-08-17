@@ -54,13 +54,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
       build-essential \
       dumb-init \
       jq \
+      openssl \
+      \
+      libcrypto++-dev \
   		libicu-dev \
   		libldap-dev \
-  		libxml2-dev \
-      openssl \
-      libcrypto++-dev \
-      libssl1.1 \
   		libssl-dev \
+  		libxml2-dev \
     \
   	&& cd /usr/local/src/libpki/ && \
   	  ./configure && \
