@@ -57,6 +57,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   		libicu-dev \
   		libldap-dev \
   		libxml2-dev \
+      openssl \
       libcrypto++-dev \
       libssl1.1 \
   		libssl-dev \
