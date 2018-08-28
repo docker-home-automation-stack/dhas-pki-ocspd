@@ -64,27 +64,34 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   		libssl-dev \
   		libxml2-dev \
     \
-  	&& cd /usr/local/src/libpki/ && \
-  	  LDFLAGS=-L/usr/lib/$(gcc -dumpmachine) CPPFLAGS=-I/usr/lib/$(gcc -dumpmachine) ./configure && \
-  	  make && \
-  	  make install && \
-  	  cd / && \
-  	  rm -rf cd /usr/local/src/libpki/ \
-  	&& cd /usr/local/src/openca-ocsp/ && \
-  	  LDFLAGS=-L/usr/lib/$(gcc -dumpmachine) CPPFLAGS=-I/usr/lib/$(gcc -dumpmachine) ./configure --includedir=/usr/lib/$(gcc -dumpmachine) --libdir=/usr/lib/$(gcc -dumpmachine) --prefix=/usr/local/ocspd && \
-      make && \
-      make install && \
-      cd / && \
-      rm -rf \
+  	&& cd /usr/local/src/libpki/ \
+  	  && ./configure \
+        --with-libdir=/usr/lib/$(gcc -dumpmachine) \
+        --with-includedir=/usr/include/$(gcc -dumpmachine) \
+  	  && make \
+  	  && make install \
+  	  && cd / \
+  	  && rm -rf cd /usr/local/src/libpki/ \
+  	&& cd /usr/local/src/openca-ocsp/ \
+  	  && ./configure \
+        --with-libdir=/usr/lib/$(gcc -dumpmachine) \
+        --with-includedir=/usr/include/$(gcc -dumpmachine) \
+        --prefix=/usr/local/ocspd \
+      && make \
+      && make install \
+      && cd / \
+      && rm -rf \
         /usr/local/ocspd/etc/ocspd/pki/token.d \
         /usr/local/ocspd/etc/ocspd/ca.d \
         /usr/local/ocspd/etc/ocspd/ocspd.xml \
-        /usr/local/src/openca-ocsp/ && \
-      ln -s /ocspd/token.d/ /usr/local/ocspd/etc/ocspd/pki/token.d && \
-      ln -s /ocspd/ca.d/ /usr/local/ocspd/etc/ocspd/ca.d && \
-      ln -s /ocspd/ocspd.xml /usr/local/ocspd/etc/ocspd/pki/ocspd.xml \
+        /usr/local/src/openca-ocsp/ \
+      && ln -s /ocspd/token.d/ /usr/local/ocspd/etc/ocspd/pki/token.d \
+      && ln -s /ocspd/ca.d/ /usr/local/ocspd/etc/ocspd/ca.d \
+      && ln -s /ocspd/ocspd.xml /usr/local/ocspd/etc/ocspd/pki/ocspd.xml \
     \
     && apt-get purge -qqy \
+        autoconf \
+        automake \
         build-essential \
     && apt-get autoremove -qqy && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
