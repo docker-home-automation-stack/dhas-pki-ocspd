@@ -66,6 +66,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     \
   	&& cd /usr/local/src/libpki/ \
   	  && ./configure \
+        --prefix=/usr \
         --with-libdir=/usr/lib/$(gcc -dumpmachine) \
         --with-includedir=/usr/include/$(gcc -dumpmachine) \
   	  && make \
@@ -74,9 +75,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   	  && rm -rf cd /usr/local/src/libpki/ \
   	&& cd /usr/local/src/openca-ocsp/ \
   	  && ./configure \
+        --prefix=/usr/local/ocspd \
         --with-libdir=/usr/lib/$(gcc -dumpmachine) \
         --with-includedir=/usr/include/$(gcc -dumpmachine) \
-        --prefix=/usr/local/ocspd \
       && make \
       && make install \
       && cd / \
