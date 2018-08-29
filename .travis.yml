@@ -108,7 +108,9 @@ before_install:
       curl -fsSL https://github.com/multiarch/qemu-user-static/releases/download/v2.12.0-1/x86_64_qemu-${QEMU_ARCH}-static.tar.gz | tar zx -C ./src/;
     fi
   # download additional sources
+  #- git clone -b OpenSSL_1_1_0-stable https://github.com/openssl/openssl/openssl.git src/openssl/;
   - git clone https://github.com/openca/libpki.git src/libpki/;
+  - cd src/libpki/; git checkout 320e80589648f5a554304995b666de3274576176;
   - git clone https://github.com/openca/openca-ocspd.git src/openca-ocspd/;
 
 install:
